@@ -21,6 +21,19 @@ Widget buildContainer({Widget child}) {
       child: child);
 }
 
+Widget buildContainerSteps({Widget child}) {
+  return Container(
+      decoration: BoxDecoration(
+        color: Colors.yellow,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey),
+      ),
+      height: 500,
+      width: 300,
+      //  color: Theme.of(context).canvasColor,
+      child: child);
+}
+
 class MealDetail extends StatelessWidget {
   static const routeName = "/meal-detail";
   @override
@@ -29,34 +42,60 @@ class MealDetail extends StatelessWidget {
     final meal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
         appBar: AppBar(title: Text(meal.title)),
-        body: Column(
-          children: [
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: Image.network(
-                meal.imageUrl,
-                fit: BoxFit.cover,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 300,
+                width: double.infinity,
+                child: Image.network(
+                  meal.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            getHeading("Ingredients", context),
-            buildContainer(
-                child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return Card(
-                        color: Theme.of(context).accentColor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            meal.ingredients[index],
-                            style: TextStyle(color: Colors.black45),
+              getHeading("Ingredients", context),
+              buildContainer(
+                  child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Card(
+                          color: Theme.of(context).accentColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              meal.ingredients[index],
+                              style: TextStyle(color: Colors.black45),
+                            ),
                           ),
+                        );
+                      },
+                      itemCount: meal.ingredients.length)),
+              getHeading('Steps', context),
+              buildContainerSteps(
+                  child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Theme.of(context).accentColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text('# ${index + 1}'),
+                          maxRadius: 15,
                         ),
-                      );
-                    },
-                    itemCount: meal.ingredients.length)),
-            getHeading('Steps', context),
-          ],
+                        title: Text(
+                          meal.steps[index],
+                          style: TextStyle(
+                              color: Colors.black45,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                itemCount: meal.steps.length,
+              ))
+            ],
+          ),
         ));
   }
 }
