@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/category_meals_screen.dart';
 import 'screens/categories_screen.dart';
+import 'screens/meal_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,7 +34,16 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetail.routeName: (ctx) => MealDetail(),
       },
+      //On Generate Route is used when we dont defined route and tap ,which generate a route and this route function is called.
+      // onGenerateRoute: (settings) {
+      //   return MaterialPageRoute(builder: ((context) => CategoriesScreen()));
+      // },
+      //Unknown routre is 404 page on web ,when ni routre is exist then this route ois generated.
+      // onUnknownRoute: (settings) {
+      //   return MaterialPageRoute(builder: ((context) => CategoryMealsScreen()));
+      // },
     );
   }
 }
