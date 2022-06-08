@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/screens/categories_screen.dart';
+import 'package:flutter_complete_guide/screens/tab_bar.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -11,7 +13,7 @@ class CustomDrawer extends StatelessWidget {
             height: 120,
             width: double.infinity,
             padding: EdgeInsets.all(20),
-            color: Theme.of(context).canvasColor,
+            color: Theme.of(context).accentColor,
             child: Text(
               "The Cook Book",
               style: TextStyle(
@@ -25,7 +27,26 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.restaurant_menu, size: (26)),
-            title: (Text('Meals')),
+            title: (Text(
+              'Meals',
+              style: TextStyle(
+                  fontFamily: 'RobotoCondensed',
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            )),
+            onTap: () {
+              Navigator.of(context).pushNamed('/');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings, size: (26)),
+            title: (Text(
+              'Filters',
+              style: TextStyle(
+                  fontFamily: 'RobotoCondensed',
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            )),
           )
         ],
       ),
