@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/screens/categories_screen.dart';
 import 'package:flutter_complete_guide/screens/favourite_screen.dart';
+import 'package:flutter_complete_guide/widgets/custom_drawer.dart';
 
 class TabScreen extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _TabScreenState extends State<TabScreen> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
+        drawer: CustomDrawer(),
         appBar: AppBar(
           title: Text('The Cook Book'),
           bottom: TabBar(
