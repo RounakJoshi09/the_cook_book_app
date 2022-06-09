@@ -6,10 +6,13 @@ import 'screens/categories_screen.dart';
 import 'screens/meal_detail.dart';
 import 'screens/tab_bar.dart';
 import 'screens/filter_screen.dart';
+import 'models/meal.dart';
+import 'dummy_data.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  List<Meal> _availableMeals = DUMMY_MEALS;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +40,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => TabScreen(),
         FilterScreen.routeName: (context) => FilterScreen(),
-        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (ctx) =>
+            CategoryMealsScreen(_availableMeals),
         MealDetail.routeName: (ctx) => MealDetail(),
       },
       //On Generate Route is used when we dont defined route and tap ,which generate a route and this route function is called.

@@ -4,21 +4,22 @@ import 'package:flutter_complete_guide/screens/meal_detail.dart';
 import '../models/meal.dart';
 import '../screens/meal_detail.dart';
 
-class Meal extends StatelessWidget {
+class MealWidget extends StatelessWidget {
   final String id;
   final String title;
   final String imageURL;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-
-  Meal(
+  final Function removeItem;
+  MealWidget(
       {@required this.id,
       @required this.title,
       @required this.imageURL,
       @required this.affordability,
       @required this.complexity,
-      @required this.duration});
+      @required this.duration,
+      @required this.removeItem});
 
   String get complexityText {
     switch (complexity) {
@@ -44,7 +45,9 @@ class Meal extends StatelessWidget {
 
   @override
   void selected_meal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetail.routeName, arguments: id);
+    Navigator.of(context)
+        .pushNamed(MealDetail.routeName, arguments: id)
+        .then((value) => removeItem(value));
   }
 
   Widget build(BuildContext context) {
