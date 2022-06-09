@@ -41,7 +41,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).pushNamed(FilterScreen.routeName);
+              Navigator.of(context).pushNamed(FiltersScreen.routeName);
             },
             leading: Icon(Icons.settings, size: (26)),
             title: (Text(
