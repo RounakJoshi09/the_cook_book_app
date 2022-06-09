@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/screens/categories_screen.dart';
+import 'package:flutter_complete_guide/screens/filter_screen.dart';
 import 'package:flutter_complete_guide/screens/tab_bar.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -35,10 +36,13 @@ class CustomDrawer extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             )),
             onTap: () {
-              Navigator.of(context).pushNamed('/');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context).pushNamed(FilterScreen.routeName);
+            },
             leading: Icon(Icons.settings, size: (26)),
             title: (Text(
               'Filters',
